@@ -36,10 +36,51 @@ def example_graph_creation() -> None:
  plt.show()
 
 
-#
+#Create a BinarSearchTree with n nodes with floats from 0.0 to 1.0
+def random_tree(n: int) -> BinarySearchTree:
+    def comes_before(x: float, y: float) -> bool:
+        return x < y
 
+    bst: BinarySearchTree = BinarySearchTree(comes_before, None)
+    for _ in range(n):
+        bst = insert(bst, random.uniform(0.0, 1.0))
+    return bst
+
+#tree height function
+def tree_height(bt: BinTree) -> int:
+    match bt:
+        case None:
+            return 0
+        case Node(_, left, right):
+            return 1 + max(tree_height(left), tree_height(right))
+
+
+#Create a graph of average height of BSTs with n nodes
+def average_height_graph(n: int) -> None:
+    heights: List[float] = []
+    node_counts: List[float] = []
+    for i in range(1, n + 1):
+        total_height: int = 0
+        for _ in range(TREES_PER_RUN):
+            bst: BinarySearchTree = random_tree(i)
+            total_height += tree_height(bst.BinaryTree)
+        average_height: float = total_height / TREES_PER_RUN
+        heights.append(average_height)
+        node_counts.append(float(i))
+
+    x_numpy: np.ndarray = np.array(node_counts)
+    y_numpy: np.ndarray = np.array(heights)
+
+    plt.plot(x_numpy, y_numpy, label='Average Height of BSTs')
+    plt.xlabel("Number of Nodes")
+    plt.ylabel("Average Height")
+    plt.title("Average Height of Random BSTs vs Number of Nodes")
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+   
 
 if (__name__ == '__main__'):
-    example_graph_creation()
+    average_height_graph(15)
     unittest.main()
 
