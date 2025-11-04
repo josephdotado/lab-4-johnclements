@@ -22,14 +22,6 @@ class Node:
     right: BinTree
 
 
-#Examples 
-bt1: BinTree = Node(10, Node(5, None, None), Node(15, None, None))
-bt2: BinTree = None
-
-bst1: BinarySearchTree = BinarySearchTree(comp, bt1)
-bst2: BinarySearchTree = BinarySearchTree(comp, bt2)
-
-
 #Functions
 
 
@@ -130,6 +122,13 @@ def comp(n1: int, n2: int) -> bool:
     return n1 < n2
 
 
+# Examples
+bt1: BinTree = Node(10, Node(5, None, None), Node(15, None, None))
+bt2: BinTree = None
+
+bst1: BinarySearchTree = BinarySearchTree(comp, bt1)
+bst2: BinarySearchTree = BinarySearchTree(comp, bt2)
+
 #Test Cases
 
 
@@ -141,7 +140,7 @@ class MyTests(unittest.TestCase):
         self.assertEqual(is_empty(bst2), True)
     
     def test_insert1(self):
-        self.assertEqual(insert(bst1, 7), BinarySearchTree(comp, Node(10, Node(5, Node(7, None, None), None), Node(15, None, None))))
+        self.assertEqual(insert(bst1, 7), BinarySearchTree(comp, Node(10, Node(5, None, Node(7, None, None)), Node(15, None, None))))
     
     def test_lookup1(self):
         self.assertEqual(lookup(bst1, 5), True)
@@ -150,9 +149,5 @@ class MyTests(unittest.TestCase):
         self.assertEqual(delete(bst1, 5), BinarySearchTree(comp, Node(10, None, Node(15, None, None))))
     
     
-
-
-
-
 if __name__ == "__main__":
     unittest.main()
