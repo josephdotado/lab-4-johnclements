@@ -147,6 +147,7 @@ class MyTests(unittest.TestCase):
     
     def test_delete1(self):
         self.assertEqual(delete(bst1, 5), BinarySearchTree(comp, Node(10, None, Node(15, None, None))))
+        
     
     
 if __name__ == "__main__":

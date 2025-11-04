@@ -35,22 +35,11 @@ def example_graph_creation() -> None:
  plt.legend() # makes the 'label's show up
  plt.show()
 
-#Create a random binary search tree with n nodes of float values between 0 and 1
-def random_tree(n: int) -> BinarySearchTree:
-    bst: BinarySearchTree = BinarySearchTree(comp, None)
-    for _ in range(n):
-        bst = insert(bst, random.uniform(0,1))
-    return bst
 
-n_max: int = 256
-
-# Create a graph of average tree height as a function of number of nodes
-def average_tree_height_graph() -> None:
-   
-   
+#
 
 
 if (__name__ == '__main__'):
-    # example_graph_creation()
-    average_tree_height_graph()
+    example_graph_creation()
+    unittest.main()
 
