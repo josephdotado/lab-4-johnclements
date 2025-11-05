@@ -80,7 +80,35 @@ def average_height_graph(n: int) -> None:
     plt.show()
    
 
+# Create a graph for the time required to insert n nodes into a BST
+def insertion_time_graph(n: int) -> None:
+    import time
+
+    times: List[float] = []
+    node_counts: List[float] = []
+    for i in range(1, n + 1):
+        bst: BinarySearchTree = BinarySearchTree(lambda x, y: x < y, None)
+        start_time: float = time.time()
+        for _ in range(i):
+            bst = insert(bst, random.uniform(0.0, 1.0))
+        end_time: float = time.time()
+        insertion_time: float = end_time - start_time
+        times.append(insertion_time)
+        node_counts.append(float(i))
+
+    x_numpy: np.ndarray = np.array(node_counts)
+    y_numpy: np.ndarray = np.array(times)
+
+    plt.plot(x_numpy, y_numpy, label='Insertion Time of BSTs')
+    plt.xlabel("Number of Nodes")
+    plt.ylabel("Time (seconds)")
+    plt.title("Insertion Time vs Number of Nodes in BSTs")
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+
 if (__name__ == '__main__'):
-    average_height_graph(15)
+    insertion_time_graph(1000)
+    average_height_graph(50)
     unittest.main()
 
