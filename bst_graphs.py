@@ -108,7 +108,7 @@ def insertion_time_graph(n: int) -> None:
     plt.show()
 
 if (__name__ == '__main__'):
-    insertion_time_graph(1000)
     average_height_graph(50)
+    insertion_time_graph(500)
     unittest.main()
 
